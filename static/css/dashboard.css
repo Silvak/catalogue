@@ -1,0 +1,136 @@
+
+body{
+    background-color: #f6f6f9;
+}
+
+
+.gridcontainer{
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: .2fr 1fr;
+    grid-template-rows: 1fr 1fr 100px;
+    grid-template-areas: "side  input"
+                         "side  table"
+                         "footer  footer";
+    height: 100vh;
+}
+
+.gridcontainer-sidebar{
+    grid-area: side;
+    outline: 1px solid #d9eaff;
+    background-color: #fff;
+}
+
+.gridcontainer-inputfiles{
+    grid-area: input;
+    display: flex;
+    justify-content: space-around;
+}
+
+.gridcontainer-tables{
+    grid-area: table;
+}
+
+.gridcontainer-footer{
+    grid-area: footer;
+    outline: 1px solid #d9eaff;
+    background-color: #fff;
+}
+
+.gridcontainer-inputfiles_card{
+    margin: 3rem 1rem 1rem 1rem;
+    padding: 1.8rem;
+    background-color: white;
+    height: 260px;
+    width: 100%;
+    border-radius: 4px;
+    box-shadow: 0px 11px 17px 2px rgba(106,113,220,0.16);
+    
+}
+
+/*  __________________cards____________________  */
+.input-one{
+    background-color: #86e6b1;
+}
+
+.gridcontainer-inputfiles_card input:nth-child(2){
+    display: none;
+}
+
+.gridcontainer-inputfiles_card form > p {
+    text-align: center;
+    font-weight: 500;
+    color: #838384;
+}
+.area{
+    display: block;
+    cursor: pointer;
+    background-color:#f7f8fc;
+    border: #9fb4ce dashed 2px;
+    border-radius: 4px;
+    padding: 0px 1em 2em 1em;
+    color: #9fb4ce;
+    height: 60%;
+    margin: 1rem 0 1rem 0;
+    padding: 1rem;
+    text-align: center;
+}
+#area-icon-img , #area-icon-file{
+    font-size: 2.1rem;
+}
+.gridcontainer-inputfiles_card input:nth-child(4){
+    grid-area: btn;
+    font-size: .8rem;
+    background-color: #e2e3eb;
+    color: rgb(162, 162, 162);
+    width: auto;
+    padding: .7rem;
+    width: 100%;
+    border-radius: 4px;
+    border-style: none;
+}
+.gridcontainer-inputfiles_card input:nth-child(4):hover{
+    background-color: #1a2dff;
+    transition: ease-out .3s;
+    cursor: pointer;
+    color: white;
+}
+
+
+
+/*  __________________sidebar____________________  */
+.gridcontainer-sidebar_list h3{
+    background-color: #1a2dff;
+    color: white;
+    padding: 2rem .5rem 1rem .5rem;
+}
+
+.gridcontainer-sidebar_list a{
+    display: block;
+    padding: 1rem;
+    color: #575757;
+}
+
+.gridcontainer-sidebar_list a:hover{
+    background-color: #d8d8d8;
+    transition: ease-in-out .2s;
+}
+
+
+/*  ____________________table______________________  */
+.tables{
+    background-color: #fff;
+    width: 1fr;
+    height: 500px;
+    border-radius: 4px;
+    margin: 1rem;
+    padding: 1rem;
+    box-shadow: 0px 11px 17px 2px rgba(106,113,220,0.16);
+}
+
+/*  ____________________table______________________  */
+.gridcontainer-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

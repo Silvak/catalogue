@@ -1,0 +1,12 @@
+.content{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-btn{
+    margin: 2rem;
+    padding: 1rem;
+    background-color: aquamarine;
+}

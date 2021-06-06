@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block tittle %}Descarga{% endblock %}
+
+
+
+{% block content %}
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="noindex">
+
+    <link rel="stylesheet" href="/static/css/download.css">
+    <!-- FONT & ICONS-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+
+
+    <div class="portada">
+        <div class="portada-logo">
+            <img src="/static/images/marca/logo_colorgrande.png" alt="">
+        </div>
+        <div class="portada-title">
+            <h1>SUMINISTRO ROLEO C.A</h1>
+            <p>CATALOGO  - {{time.day}} / {{time.month}} / {{time.year}}</p>
+        </div>
+    </div>
+
+    <!--
+    <div class="destacados">
+        <div class="destacado1">
+            <div class="img-destacado"></div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+        <div class="destacado2">
+            <div class="img-destacado"></div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+        <div class="destacado3">
+            <div class="img-destacado"></div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>        
+        </div>
+    </div>
+    -->
+
+    <div class="barra-init">
+        <p></p>
+    </div>
+
+
+    <div class="grid">
+        {% set pag = [0] %}
+
+        {% for producto in productos %}
+
+        <div class="card" id="card{{loop.index}}">
+
+            <div class="card-image">
+                <img    src="/static/images/catalogo/{{producto.id}}.png"  onerror="this.src='static/images/icons/no-disponible.png'" >  
+                <script src="/static/js/image_size.js" type="text/javascript"></script>
+            </div>
+
+            <div class="content">
+                <div class="card-price">
+                    {%set list = (producto.Precio | string()).split('.') %}
+                    <p>{{list[0]}}.{{list[1]}}<b>$</b></p>
+                </div>
+                <div class="card-other">
+                    {% set descuento = producto.Descuento | float %}
+                    {% if descuento > 0 %}
+                        {% set descuentomulti = descuento * 100 %}
+                        {%set list_des = (descuentomulti | string()).split('.') %}
+                        <div class="descuento">
+                            -{{list_des[0]}}%
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="card-text">
+                    <p>
+                        <strong>{{producto.id}}</strong>
+                        {{producto.Descripcion}}
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+
+            {%set numero =  loop.index % 9 %}
+            {%set numero = (numero | string()) %}
+            {%  if  numero  == '0' %}
+                <div class="separador"> 
+                    <div class="pagina">
+                        {% if pag.append(pag.pop() + 1) %}
+                        {% endif %} 
+                        <p>{{pag[0]}} pag.</p>    
+                    </div>
+
+                    <div class="barra">
+                        <div class="barra-content">
+                            <div class="barra-content-img" ><p>SUMINISTRO ROLEO C.A</p> <p>{{ producto.Categoria }}</p></div>
+
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+
+        {% endfor %}
+    </div>
+
+    <div class="cierre">
+        <p>SUMINISTRO ROLEO C.A 2021</p>
+    </div>
+
+
+
+    <!-- ICONS-->
+    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+
+{% endblock %}
+
+
+
+<!--onerror="this.style.display='none'"    onerror="this.src='static/images/icons/no-disponible.png'"  onerror="this.closest('.card').style.display='none'"-->

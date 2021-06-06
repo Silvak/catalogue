@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block tittle %}Dashboard{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="/static/css/dashboard.css">
+
+<div class="gridcontainer">
+    <div class="gridcontainer-sidebar">
+        <div class="gridcontainer-sidebar_list">
+            <H3>Panel de Administracion</H3>
+            <ul>
+                <li>
+                    <a href="">Ver datos</a>
+                    <a href="">Buscar datos</a>
+                    <a href="">Editar producto</a>
+                    <a href="">Eliminar Producto</a>
+                    <a href="">Usuarios</a>
+                    <a href="">Bandeja</a>
+                    <br>
+                    <a><strong>Generar Catalogo Pdf</strong> </a>
+                    <a href="">Catalogo 1</a>
+                    <a href="">Catalogo 2</a>
+                    <a href="">Catalogo 3</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="gridcontainer-inputfiles">
+            <div class="gridcontainer-inputfiles_card input-one">
+                <p><strong>Reglas</strong></p><br>
+                <p>
+                    º Archivos admitidos<br> 
+                    º png, xls<br>
+                    º png, xls<br>
+                </p>
+            </div>
+            <div class="gridcontainer-inputfiles_card input-two">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <p>Actualizar catalogo</p>
+                    <input type="file" name="upfile" id="file">
+                    <label type="file" for="file" class="area">
+                        <p>Selecionar un archivo exel</p><br>
+                        <ion-icon name="document-outline"id="area-icon-file"></ion-icon>
+                    </label>
+                    <input type="submit" value="SUBIR">
+                </form> 
+            </div>
+            <div class="gridcontainer-inputfiles_card input-three">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <p>Subir Imgen catalogo</p>
+                    <input type="file" name="upimage" id="image">
+                    <label type="file" for="image" class="area">
+                        <p>Selecionar una imagen</p><br>
+                        <ion-icon name="image-outline" id="area-icon-img"></ion-icon>
+                    </label>
+                    <input class="summit" type="submit" value="SUBIR">
+                </form> 
+            </div>
+    </div>
+
+    <div class="gridcontainer-tables">
+        <div class="tables">
+        </div>
+    </div>
+    <div class="gridcontainer-footer">
+        <div class="gridcontainer-footer_info">
+            <p>Derechos reservados por ©SUMINISTRO ROLEO C.A</p>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
