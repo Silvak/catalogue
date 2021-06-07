@@ -42,10 +42,13 @@
                     <button class="drop-nav-button"><ion-icon name="chevron-down-outline"></ion-icon></button>
                     <div class="drop-nav-content">
                         {% if current_user.is_authenticated %}
-                            <a href="#">Admin</a>
+                            <a href="#">{{username}}</a>
                         {% endif %}
 
-                        <a href="{{ url_for('auth.login') }}" >Login</a>
+                        {% if not current_user.is_authenticated %}
+                            <a href="{{ url_for('auth.login') }}" >Login</a>
+                        {% endif %}
+                
 
                         {% if current_user.is_authenticated %}
                         <a href="{{ url_for('auth.logout') }}">

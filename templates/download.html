@@ -1,10 +1,11 @@
-{% extends "base.html" %}
 
-{% block tittle %}Descarga{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-
-{% block content %}
     <meta name="robots" content="noindex">
     <meta name="googlebot" content="noindex">
 
@@ -13,7 +14,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
 
+    <link rel="shortcut icon" href="/static/images/marca/logofavicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/normalize.css">
+    <title>Document</title>
+</head>
+<body>
 
+    <div class="btn-descarga">
+        <div class="arrow-back">
+            <a href="{{ url_for('main.dashboard') }}"><ion-icon name="arrow-undo-outline"></ion-icon></a>
+        </div>
+       <input type="button" value="Guardar PDF" onclick="save_pdf()">
+    </div>
 
     <div class="portada">
         <div class="portada-logo">
@@ -97,7 +109,7 @@
 
                     <div class="barra">
                         <div class="barra-content">
-                            <div class="barra-content-img" ><p>SUMINISTRO ROLEO C.A</p> <p>{{ producto.Categoria }}</p></div>
+                            <div class="barra-content-img" ><p id="barra-name">SUMINISTRO ROLEO C.A</p></div>
 
                         </div>
                     </div>
@@ -117,8 +129,10 @@
     <!-- ICONS-->
     <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
 
-{% endblock %}
 
 
 
 <!--onerror="this.style.display='none'"    onerror="this.src='static/images/icons/no-disponible.png'"  onerror="this.closest('.card').style.display='none'"-->
+
+</body>
+</html>

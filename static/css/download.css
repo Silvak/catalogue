@@ -9,7 +9,7 @@
 
   --background-color: #ffffff;
   --backgroun-color-img: #E9E9F1;
-  --border-color: #ffffff; 
+  --border-color:none; 
   --shadow-color: 0px 11px 17px 2px rgba(106,113,220,0.16);
   /*Fuente y tipografia*/
   --body-font: 'Poppins', sans-serif;
@@ -21,21 +21,80 @@
   --z-fixed: 100;
 }
 
+
+
 /*   GENERAL  */
 body{
-    background-image: url("/static/images/backgrounds/fondo_3_claro_pesado.jpg");
-    background-repeat: repeat;
-    font-family: var(--body-font);
-    color: var(--general-font-color);
-    width: 100%;
-    /* disble copy*/
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
+  background-image: url("/static/images/backgrounds/fondo_3_claro.jpg");
+  background-repeat: repeat;
+  font-family: var(--body-font);
+  color: var(--general-font-color);
+  width: 100%;
+  /* disble copy*/
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  overflow-x: hidden;
 }
+
+a{
+  text-decoration: none;
+}
+
+
+/* button download pdf*/
+.btn-descarga{
+  display: flex;
+  justify-content: center;
+  align-items:  center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: #fff;
+  z-index: 1000;
+  outline: 1px solid rgb(220, 220, 220);
+}
+.btn-descarga > input{
+  height: 50px;
+  width: 120px;
+  border-style: none;
+  background-color: #f2f2f2;
+  transition: ease-in-out .2s;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn-descarga > input:hover{
+  background-color: #1a2dff;
+  color: white;
+  font-weight: 400px;
+  transition: ease-in-out .2s;
+}
+
+.arrow-back{
+  position: absolute;
+  top: 30%;
+  left: 5%;
+  font-size: 2rem;
+}
+
+.arrow-back a{
+  padding: .5rem;
+  color: #d8d8e1;
+  transition: ease-out .2s;
+}
+
+
+.arrow-back a:hover{
+  padding: .5rem;
+  color: #0bce70;
+  transition: ease-out .2s;
+}
+
 
 /*   PORTADA  _______________________________-*/
 .portada{
@@ -44,7 +103,7 @@ body{
   justify-content: center;
   align-items:center;
   height: 11.7in;
-  width: 102vw;
+  width: 100%;
   padding: 50px;
   background-image: url("/static/images/portada/portada_4-min.jpg");
   background-repeat: no-repeat;
@@ -142,7 +201,6 @@ body{
 }
 .card, .card-one, .card-two, .card-three{
   overflow: hidden;
-  background-color: white;
   outline: 1px solid var(--border-color);
 }
 
@@ -266,7 +324,7 @@ body{
 .barra-content{
   position: relative;
   left: 16px;
-  width: 100vw;
+  width: 110vw;
   height: 100%;
   padding: 1.5rem;
   background-color: #003049;
@@ -281,16 +339,18 @@ body{
   width: 128px;
   height: 50px;
 }
-.barra p{
+#barra-name{
+  width: 198px;
   position: relative;
   display: inline-block;
   color: white;
-  padding: .5rem;
-  right: -6.6in;
+  padding: .5rem 0 .5rem .5rem;
+  right: -6in;
   font-size: 1rem;
   z-index: 1000;
   opacity: 0.91;
   font-weight: 100px;
+  margin-top: .6rem;
 }
 
 
@@ -324,13 +384,13 @@ body{
 /* IMPRESION */
 @media print {
   @page {
-    size: 8.2in 700.5in;
+    size: 8.2in 800.2in;
     margin-top: 0cm;
     margin-left: 0cm;
     margin-right: 0cm;
     margin-bottom: 0cm;
   }
-  .header {
+  .btn-descarga{
     display: none;
   }
 }

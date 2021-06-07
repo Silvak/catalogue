@@ -32,6 +32,10 @@ function inicio(){
     }
 }
 
+function save_pdf() {
+    window.print();
+}
+
 
 //var altoOriginal = img.naturalHeight;
 //console.log(altoOriginal);

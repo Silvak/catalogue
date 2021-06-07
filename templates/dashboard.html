@@ -19,9 +19,9 @@
                     <a href="">Bandeja</a>
                     <br>
                     <a><strong>Generar Catalogo Pdf</strong> </a>
-                    <a href="">Catalogo 1</a>
-                    <a href="">Catalogo 2</a>
-                    <a href="">Catalogo 3</a>
+                    <a href="{{ url_for('main.catalogue_one') }}">Catalogo 1</a>
+                    <a href="{{ url_for('main.catalogue_two') }}">Catalogo 2</a>
+                    <a href="{{ url_for('main.catalogue_three') }}">Catalogo 3</a>
                 </li>
             </ul>
         </div>
@@ -42,7 +42,7 @@
                     <input type="file" name="upfile" id="file">
                     <label type="file" for="file" class="area">
                         <p>Selecionar un archivo exel</p><br>
-                        <ion-icon name="document-outline"id="area-icon-file"></ion-icon>
+                        <ion-icon name="document-text-outline" id="area-icon-file"></ion-icon>
                     </label>
                     <input type="submit" value="SUBIR">
                 </form> 

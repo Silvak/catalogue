@@ -88,7 +88,6 @@ class Productos_dijonas(db.Model):
     Disponibilidad = db.Column(db.Integer)
     Transito = db.Column(db.String(300))
     Precio = db.Column(db.Float)
-    Descuento = db.Column(db.Float)
     Descripcion = db.Column(db.String(300))
     UM = db.Column(db.String(10))
 
@@ -96,16 +95,18 @@ class Productos_dijonas(db.Model):
 
 #________________________________CRUD________________________________________
 
-def get_productos():
-    #datos = Consulta.query.with_entities(Consulta.id, Consulta.Disponibilidad, Consulta.Precio, Consulta.Descuento, Consulta.Descripcion).all()
-    dato1 = Productos_usy.query.filter(Productos_usy.Disponibilidad != '0' or Productos_usy.Disponibilidad != None).all()
-    #dato1 = Productos_usy.query.filter(Productos_usy.Disponibilidad != '0' or Productos_usy.Disponibilidad != None).order_by(Productos_usy.Categoria).all()
-    accesorios = Productos_usy.query.filter(Productos_usy.Descripcion.contains('accesorio')).filter(Productos_usy.Disponibilidad != '0' or Productos_usy.Disponibilidad != None).all()
-    regadera = Productos_usy.query.filter(Productos_usy.Descripcion.contains('regadera')).all()
-    #dato2 =  Productos_usy.query.filter(Productos_usy.Descripcion.like('agua')).all()
-    #dato2 = Productos_marca.query.filter(Productos_marca.Disponibilidad != '0' or Productos_marca.Disponibilidad != None).all()
-    #dato3 = Productos_dijonas.query.filter(Productos_dijonas.Disponibilidad != '0' or Productos_dijonas.Disponibilidad != None).all()
-    return dato1
+def get_productos_usy():
+    dato = Productos_usy.query.with_entities(Productos_usy.id, Productos_usy.Disponibilidad, Productos_usy.Precio, Productos_usy.Descuento, Productos_usy.Descripcion).filter(Productos_usy.Disponibilidad != '0' or Productos_usy.Disponibilidad != None).all()
+    # tomas = Productos_usy.query.filter(Productos_usy.Descripcion.contains('toma') & (Productos_usy.Disponibilidad != '0' or Productos_usy.Disponibilidad != None)).all()
+    return  dato
+
+def get_productos_marca():
+    dato = Productos_marca.query.filter(Productos_marca.Disponibilidad != '0' or Productos_marca.Disponibilidad != None).all()
+    return  dato
+
+def get_productos_dijonas():
+    dato = Productos_dijonas.query.filter(Productos_dijonas.Disponibilidad != '0' or Productos_dijonas.Disponibilidad != None).all()
+    return  dato
 
 def get_productos_id(id):
     datos = Productos_usy.query.filter_by(id=id).first()
