@@ -4,7 +4,7 @@ import os
 
 UPLOAD_FOLDER = os.path.abspath('./project/data/')
 FILE_XLS = os.path.abspath('./project/data/catalog_data.xls')
-ALLOWED_EXTENSIONS = set(['xls', 'xlsx'])
+ALLOWED_EXTENSIONS = set(['xls', 'xlsx', 'png', 'jpg'])
 SHEET = ['Importadora Usy', 'Marca ', 'Dijonas']
 
 
@@ -30,6 +30,10 @@ def file_management(f, filename):
     rename_file = os.path.abspath('./project/data/catalog_data.xls')
     os.rename(os.path.abspath('./project/data/'+filename.replace(' ', '_')), rename_file)
 
+def img_management(f, filename):
+    print(f)
+    print(filename)
+    pass
 
 def import_data():
     '''sistema de importacion de datos, convierte .xls en dataframe y lo vacia en DB'''

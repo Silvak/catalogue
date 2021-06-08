@@ -5,6 +5,7 @@
 
 <link rel="stylesheet" href="/static/css/dashboard.css">
 
+
 <div class="gridcontainer">
     <div class="gridcontainer-sidebar">
         <div class="gridcontainer-sidebar_list">
@@ -28,6 +29,7 @@
     </div>
 
     <div class="gridcontainer-inputfiles">
+        
             <div class="gridcontainer-inputfiles_card input-one">
                 <p><strong>Reglas</strong></p><br>
                 <p>
@@ -46,6 +48,13 @@
                     </label>
                     <input type="submit" value="SUBIR">
                 </form> 
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                   <div class="notification">
+                       {{messages}}
+                   </div>
+                {% endif %}
+                {% endwith %}
             </div>
             <div class="gridcontainer-inputfiles_card input-three">
                 <form action="" method="POST" enctype="multipart/form-data">
@@ -61,6 +70,7 @@
     </div>
 
     <div class="gridcontainer-tables">
+        
         <div class="tables">
         </div>
     </div>
@@ -70,6 +80,7 @@
         </div>
     </div>
 </div>
+
 
 
 {% endblock %}

@@ -43,7 +43,7 @@ body{
     margin: 1rem;
     padding: 1.8rem;
     background-color: white;
-    height: 260px;
+    height: 300px;
     width: 30%;
     min-width: 260px;
     border-radius: 4px;
@@ -97,6 +97,18 @@ body{
     transition: ease-out .3s;
     cursor: pointer;
     color: white;
+}
+
+.notification{
+    width: 100%;
+    margin-top: 1rem;
+    color: #414141;
+    background: #86e6b1;
+    border-radius: 4px;
+    border: 1px solid #41a26d;
+    font-size: .8rem;
+    padding: .8rem;
+    text-align: center;
 }
 
 

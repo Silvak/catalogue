@@ -1,9 +1,10 @@
-from flask import Blueprint, render_template, request, send_file, make_response ,redirect, url_for, session
+from flask import Blueprint, render_template, request, send_file, make_response ,redirect, url_for, session, flash
 from flask_login import login_required, current_user
+from flask_login.utils import login_user
 from werkzeug.wrappers import response
 from werkzeug.wrappers.response import Response
-from .models import Productos_usy, Productos_marca, Productos_dijonas, all_paginated, get_productos_usy, get_productos_marca, get_productos_dijonas
-from .files import file_management, allowed_file, import_data
+from .models import Productos_usy, Productos_marca, Productos_dijonas, all_paginated, get_productos_usy, get_productos_marca, get_productos_dijonas, User
+from .files import file_management, allowed_file, import_data, img_management
 from werkzeug.utils import secure_filename
 from datetime import datetime
 #import pdfkit
@@ -85,21 +86,15 @@ def dashboard():
 
     if request.method == 'POST':
             if 'upfile' not in request.files:
-                return 'El formulario no contiene la parte del archivo'
+                flash('El formulario no contiene la parte del archivo') 
             f = request.files['upfile']
             if f.filename == '':
-                return 'No se ha seleccionado ningon archivo'
+                flash('no se ha selecionado ningun archivo') 
             if f and allowed_file(f.filename):
                 filename = secure_filename(f.filename)
-                file_management(f, filename)  
+                file_management(f, filename) 
+                flash('Actualizacion exitosa') 
                 import_data()
-                '''
-                try:
-                    import_data()
-                except:
-                    return 'No se ha logrado importar los datos de ' + f.filename
-                '''
-                return  'Archivo almacenado: ' + f.filename 
     return  render_template('dashboard.html', username=current_user.username)
 
 
