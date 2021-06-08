@@ -2,13 +2,13 @@ from sqlalchemy import create_engine, update
 import pandas as pd
 import os
 
-UPLOAD_FOLDER = os.path.abspath('./project/data/')
-FILE_XLS = os.path.abspath('./project/data/catalog_data.xls')
+UPLOAD_FOLDER = os.path.abspath('./catalogue/data/')
+FILE_XLS = os.path.abspath('./catalogue/data/catalog_data.xls')
 ALLOWED_EXTENSIONS = set(['xls', 'xlsx', 'png', 'jpg'])
 SHEET = ['Importadora Usy', 'Marca ', 'Dijonas']
 
 
-engine = create_engine('sqlite:///project/data/products.db', echo=False)
+engine = create_engine('sqlite:///catalogue/data/products.db', echo=False)
 
 
 def allowed_file(filename):
@@ -27,8 +27,8 @@ def file_management(f, filename):
     else:
         f.save(os.path.join(UPLOAD_FOLDER, filename))
         print('file.xls  CREADO    ')
-    rename_file = os.path.abspath('./project/data/catalog_data.xls')
-    os.rename(os.path.abspath('./project/data/'+filename.replace(' ', '_')), rename_file)
+    rename_file = os.path.abspath('./catalogue/data/catalog_data.xls')
+    os.rename(os.path.abspath('./catalogue/data/'+filename.replace(' ', '_')), rename_file)
 
 def img_management(f, filename):
     print(f)
@@ -67,7 +67,3 @@ def import_data():
     #hoja1 = engine.execute('SELECT * FROM hoja1 WHERE Disponibilidad > 0 OR Disponibilidad IS NULL').fetchall()
     return 
 
-
-def render_file_pdf():
-
-    return

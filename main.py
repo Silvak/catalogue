@@ -35,8 +35,8 @@ def download():
 #generar descargas automaticas de archivos pdf subidos
 @main.route('/descarga/catalogo',  methods=['GET', 'POST'])
 def download_file():
-    paht_catalog =  './data/pdf/catalogo_roleo_1.pdf' 
-    return send_file(paht_catalog, as_attachment=True)
+    #paht_catalog =  './data/pdf/catalogo_roleo_1.pdf' 
+    return '_' #send_file(paht_catalog, as_attachment=True)
 
 
 '''

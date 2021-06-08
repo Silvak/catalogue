@@ -1,1 +1,1 @@
-web: project main:main
+web: gunicorn main.main
