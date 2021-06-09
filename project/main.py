@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, send_file, make_response ,redirect, url_for, session, flash
 from flask_login import login_required, current_user
 from flask_login.utils import login_user
+from jinja2.environment import create_cache
 from werkzeug.wrappers import response
 from werkzeug.wrappers.response import Response
 from .models import Productos_usy, Productos_marca, Productos_dijonas, all_paginated, get_productos_usy, get_productos_marca, get_productos_dijonas, User
@@ -8,6 +9,8 @@ from .files import file_management, allowed_file, import_data, img_management
 from werkzeug.utils import secure_filename
 from datetime import datetime
 #import pdfkit
+
+from .__init__ import create_app
 
 
 main = Blueprint('main', __name__)
@@ -97,3 +100,9 @@ def dashboard():
                 import_data()
     return  render_template('dashboard.html', username=current_user.username)
 
+
+
+
+if __name__ == '__main__':
+    app = create_app()
+    app.run(debug=True)
