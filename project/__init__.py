@@ -32,6 +32,6 @@ def create_app():
 
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
-
+    app.run()
     return app
 
