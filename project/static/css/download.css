@@ -385,7 +385,7 @@ a{
 /* IMPRESION */
 @media print {
   @page {
-    size: 8.2in 800.2in;
+    /*size: 8.2in 800.2in; */
     margin-top: 0cm;
     margin-left: 0cm;
     margin-right: 0cm;

@@ -25,7 +25,9 @@
                     <div class="content">
                         <div class="content-text">{{alert[0]}}.
                         <a href="#"></a></div>
-                        <div class="content-buttons" id="close-btn">Aceptar</div>
+                        <div class="content-buttons" id="close-btn">
+                            <ion-icon name="close-outline"></ion-icon>
+                        </div>
                     </div>
                 </div>
                 <div class="notification">
@@ -36,11 +38,11 @@
 
     {% include "navbar.html" %}
     
-    {% block menu %}
-    {% endblock %}
-
-    {% block content %}
-    {% endblock %}
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    
 
     
 </body>

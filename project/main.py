@@ -90,7 +90,7 @@ def catalogue_three():
 def dashboard():
 
     #Recive archivo excel
-    if request.form.get('btn') == 'Actualizar DB':
+    if request.form.get('btn') == 'Subir Archivo':
         if request.method == 'POST':
             f = request.files['upfile']
             if f.filename == '' or 'upfile' not in request.files:
@@ -99,7 +99,12 @@ def dashboard():
                 filename = secure_filename(f.filename)
                 file_management(f, filename) 
                 flash('Actualizacion exitosa.success') 
-                #import_data()
+            
+            try:
+                import_data()
+                flash('Actualizacion catalogo exitosa.success')
+            except:
+                flash('No se ha podido actualizar lista de productos.warning')
 
     #Recive imagen png
     if request.form.get('btn') == 'Subir Imagen':
