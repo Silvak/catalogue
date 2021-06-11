@@ -31,40 +31,34 @@
     <div class="gridcontainer-inputfiles">
         
             <div class="gridcontainer-inputfiles_card input-one">
-                <p><strong>Reglas</strong></p><br>
+                <p><strong>Reglas para actualizar catalogo</strong></p><br>
                 <p>
                     º Archivos admitidos<br> 
                     º png, xls<br>
                     º png, xls<br>
                 </p>
             </div>
+            
             <div class="gridcontainer-inputfiles_card input-two">
                 <form action="" method="POST" enctype="multipart/form-data">
-                    <p>Actualizar catalogo</p>
+                    <p>Subir archivo <br><b>Formato admitido .xls</b></p>
                     <input type="file" name="upfile" id="file">
                     <label type="file" for="file" class="area">
-                        <p>Selecionar un archivo exel</p><br>
+                        <p>Selecione o arrastre una archivo</p><br><br>
                         <ion-icon name="document-text-outline" id="area-icon-file"></ion-icon>
                     </label>
-                    <input type="submit" value="SUBIR">
+                    <input type="submit" name="btn" value="Actualizar DB">
                 </form> 
-                {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                   <div class="notification">
-                       {{messages}}
-                   </div>
-                {% endif %}
-                {% endwith %}
             </div>
             <div class="gridcontainer-inputfiles_card input-three">
                 <form action="" method="POST" enctype="multipart/form-data">
-                    <p>Subir Imgen catalogo</p>
+                    <p>Subir Imgen <br><b>Formato admitido .png</b></p>
                     <input type="file" name="upimage" id="image">
                     <label type="file" for="image" class="area">
-                        <p>Selecionar una imagen</p><br>
+                        <p>Selecione o arrastre una imagen</p><br><br>
                         <ion-icon name="image-outline" id="area-icon-img"></ion-icon>
                     </label>
-                    <input class="summit" type="submit" value="SUBIR">
+                    <input type="submit" name="btn" value="Subir Imagen">
                 </form> 
             </div>
     </div>

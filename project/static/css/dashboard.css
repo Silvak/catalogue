@@ -1,11 +1,11 @@
 
 body{
-    background-color: #f6f6f9;
+    background-color: #f7f7f6;
 }
 
 
 .gridcontainer{
-    margin-top: 40px;
+    margin-top: 4.5%;
     display: grid;
     grid-template-columns: .2fr 1fr;
     grid-template-rows: 1fr 1fr 100px;
@@ -17,8 +17,10 @@ body{
 
 .gridcontainer-sidebar{
     grid-area: side;
+    width: 220px;
     outline: 1px solid #d9eaff;
     background-color: #fff;
+    overflow: hidden;
 }
 
 .gridcontainer-inputfiles{
@@ -41,19 +43,29 @@ body{
 
 .gridcontainer-inputfiles_card{
     margin: 1rem;
-    padding: 1.8rem;
+    padding: 1.2rem;
     background-color: white;
     height: 300px;
-    width: 30%;
+    flex: 1 1 auto;
     min-width: 260px;
     border-radius: 4px;
-    box-shadow: 0px 11px 17px 2px rgba(106,113,220,0.16);
+    border: 1px solid rgba(148, 152, 214, 0.379);
+    box-shadow: 0px 1px 1px 1px rgba(73,96,143,0.07);
     overflow: hidden;
+    transition: ease-out .2s;
 }
-
+.gridcontainer-inputfiles_card:hover {
+    border: 1px solid rgba(123, 127, 183, 0.516);
+    box-shadow: 0px 9px 11px -1px rgba(73,96,143,0.2);
+    transition: ease-in .2s;
+}   
 /*  __________________cards____________________  */
-.input-one{
-    background-color: #86e6b1;
+.input-one {
+    box-shadow: none;
+    background-color: #f6f6f9;
+}
+.input-one:hover {
+    box-shadow:none;
 }
 
 .gridcontainer-inputfiles_card input:nth-child(2){
@@ -62,8 +74,14 @@ body{
 
 .gridcontainer-inputfiles_card form > p {
     text-align: center;
-    font-weight: 500;
-    color: #838384;
+    font-weight: 600;
+    color: #4b4b4f;
+}
+
+.gridcontainer-inputfiles_card form > p > b {
+    font-size: .75rem;
+    font-weight: 100;
+    color: #a4a4a5;
 }
 .area{
     display: block;
@@ -73,13 +91,13 @@ body{
     border-radius: 4px;
     padding: 0px 1em 2em 1em;
     color: #9fb4ce;
-    height: auto;
-    margin: 1rem 0 1rem 0;
+    height: 140px;
+    margin: 1.4rem 0 1.4rem 0;
     padding: 1rem;
     text-align: center;
 }
 #area-icon-img , #area-icon-file{
-    font-size: 2.1rem;
+    font-size: 2.7rem;
 }
 .gridcontainer-inputfiles_card input:nth-child(4){
     grid-area: btn;
@@ -99,17 +117,6 @@ body{
     color: white;
 }
 
-.notification{
-    width: 100%;
-    margin-top: 1rem;
-    color: #414141;
-    background: #86e6b1;
-    border-radius: 4px;
-    border: 1px solid #41a26d;
-    font-size: .8rem;
-    padding: .8rem;
-    text-align: center;
-}
 
 
 

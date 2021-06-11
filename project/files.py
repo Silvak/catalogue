@@ -2,13 +2,13 @@ from sqlalchemy import create_engine, update
 import pandas as pd
 import os
 
-UPLOAD_FOLDER = os.path.abspath('./catalogue/data/')
-FILE_XLS = os.path.abspath('./catalogue/data/catalog_data.xls')
-ALLOWED_EXTENSIONS = set(['xls', 'xlsx', 'png', 'jpg'])
+UPLOAD_FOLDER = os.path.abspath('./project/data/')
+FILE_XLS = os.path.abspath('./project/data/catalog_data.xls')
+ALLOWED_EXTENSIONS = set(['xls', 'xlsx', 'png'])
 SHEET = ['Importadora Usy', 'Marca ', 'Dijonas']
 
 
-engine = create_engine('sqlite:///catalogue/data/products.db', echo=False)
+engine = create_engine('sqlite:///project/data/products.db', echo=False)
 
 
 def allowed_file(filename):
@@ -27,13 +27,16 @@ def file_management(f, filename):
     else:
         f.save(os.path.join(UPLOAD_FOLDER, filename))
         print('file.xls  CREADO    ')
-    rename_file = os.path.abspath('./catalogue/data/catalog_data.xls')
-    os.rename(os.path.abspath('./catalogue/data/'+filename.replace(' ', '_')), rename_file)
+    rename_file = os.path.abspath('./project/data/catalog_data.xls')
+    os.rename(os.path.abspath('./project/data/'+filename.replace(' ', '_')), rename_file)
+
 
 def img_management(f, filename):
-    print(f)
-    print(filename)
-    pass
+    img_folder = os.path.abspath('./project/static/images/catalogo')
+    f.save(os.path.join(img_folder, filename))
+    return
+
+
 
 def import_data():
     '''sistema de importacion de datos, convierte .xls en dataframe y lo vacia en DB'''

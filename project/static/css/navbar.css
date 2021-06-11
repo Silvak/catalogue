@@ -39,7 +39,7 @@ ul{
     background-color: white;
     outline: 1px solid #e2e3eb;
     font-size: .9.38rem;
-    z-index: 1000;
+    z-index: 400;
 }
 .nav{
     display: flex;

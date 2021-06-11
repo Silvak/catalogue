@@ -6,14 +6,16 @@ from werkzeug.security import  check_password_hash
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
+    def __init__(self, id, username, email, password):
+        self.id = id 
+        self.username = username
+        self.email = email
+        self.password = password
  
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(1000), unique=True)
     email = db.Column(db.String(100), unique=True)
-    password = db.Column(db.String(100))
-    
-    def verify_password(self, password):
-        return check_password_hash(self.password, password)
+    password = db.Column(db.String(400))
 
 
 class Productos_usy(db.Model):

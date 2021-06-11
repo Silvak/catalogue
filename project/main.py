@@ -1,16 +1,18 @@
-from flask import Blueprint, render_template, request, send_file, make_response ,redirect, url_for, session, flash
+from flask import Blueprint 
+from flask import render_template
+from flask import request 
+from flask import send_file
+from flask import make_response 
+from flask import redirect 
+from flask import url_for 
+from flask import session
+from flask import flash
 from flask_login import login_required, current_user
-from flask_login.utils import login_user
-from jinja2.environment import create_cache
-from werkzeug.wrappers import response
-from werkzeug.wrappers.response import Response
-from .models import Productos_usy, Productos_marca, Productos_dijonas, all_paginated, get_productos_usy, get_productos_marca, get_productos_dijonas, User
 from .files import file_management, allowed_file, import_data, img_management
 from werkzeug.utils import secure_filename
+from .models import  all_paginated, get_productos_usy, get_productos_marca, get_productos_dijonas
 from datetime import datetime
 #import pdfkit
-
-from .__init__ import create_app
 
 
 main = Blueprint('main', __name__)
@@ -87,22 +89,32 @@ def catalogue_three():
 @login_required
 def dashboard():
 
-    if request.method == 'POST':
-            if 'upfile' not in request.files:
-                flash('El formulario no contiene la parte del archivo') 
+    #Recive archivo excel
+    if request.form.get('btn') == 'Actualizar DB':
+        if request.method == 'POST':
             f = request.files['upfile']
-            if f.filename == '':
-                flash('no se ha selecionado ningun archivo') 
+            if f.filename == '' or 'upfile' not in request.files:
+                flash('No se ha selecionado ningun archivo.info') 
             if f and allowed_file(f.filename):
                 filename = secure_filename(f.filename)
                 file_management(f, filename) 
-                flash('Actualizacion exitosa') 
+                flash('Actualizacion exitosa.success') 
                 import_data()
+
+    #Recive imagen png
+    if request.form.get('btn') == 'Subir Imagen':
+        if request.method == 'POST':
+            f = request.files['upimage']
+            if f.filename == ''  or 'upimage' not in request.files:
+                flash('No se ha selecionado ninguna imagen.info') 
+            if f and allowed_file(f.filename):
+                filename = secure_filename(f.filename)
+                img_management(f, filename) 
+                flash('Imagen subida exitosamente.success') 
+
+
     return  render_template('dashboard.html', username=current_user.username)
 
 
 
 
-if __name__ == '__main__':
-    app = create_app()
-    app.run(debug=True)
