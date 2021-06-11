@@ -58,13 +58,20 @@
 
 
 .success > .content{
-    background-color: #b9d8b9;
+    background-color: #D4EDDA;
+    color: #45674F;
 }
 .warnin > .content{
-    background-color: rgb(213, 227, 240);
+    background-color: #FFF3CD;
+    color: #7E703F;
 }
 
 .info > .content{
-    background-color: rgb(213, 227, 240);
+    background-color: #CBE5FE;
+    color: #103E60;
 }
 
+.danger{
+    background-color: #F2D5DB;
+    color: #552E31; 
+}

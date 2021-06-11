@@ -99,7 +99,7 @@ def dashboard():
                 filename = secure_filename(f.filename)
                 file_management(f, filename) 
                 flash('Actualizacion exitosa.success') 
-                import_data()
+                #import_data()
 
     #Recive imagen png
     if request.form.get('btn') == 'Subir Imagen':

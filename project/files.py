@@ -21,7 +21,7 @@ def file_management(f, filename):
     data_folder = os.listdir(UPLOAD_FOLDER)
     if 'catalog_data.xls' in data_folder:
         #replace file
-        os.remove(UPLOAD_FOLDER + '\\catalog_data.xls')
+        os.remove(UPLOAD_FOLDER + '/catalog_data.xls')
         f.save(os.path.join(UPLOAD_FOLDER, filename))
         print('file.xls SOBRESCRITO')
     else:
