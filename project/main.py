@@ -20,7 +20,7 @@ main = Blueprint('main', __name__)
 #landing page
 @main.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    return redirect( url_for('main.online_catalog'))
 
 
 #______________________________________ catalogo de busqueda online ___________________________________
@@ -62,25 +62,25 @@ def download_one():
 '''
 
 # _______________________________ vistas de catalogo por seccion _________________________________________--
-@main.route('/catalogo-suministro-roleo-1', methods=['GET', 'POST'])
+@main.route('/catalogo-suministro-roleo-1')
 def catalogue_one():
     productos = get_productos_usy()
     time = datetime.now()
-    return render_template('download.html', productos = productos, time = time)
+    return render_template('catalogue_one.html', productos = productos, time = time)
 
 
-@main.route('/catalogo-suministro-roleo-2', methods=['GET', 'POST'])
+@main.route('/catalogo-suministro-roleo-2')
 def catalogue_two():
     productos = get_productos_marca()
     time = datetime.now()
-    return render_template('download.html', productos = productos, time = time)
+    return render_template('catalogue_two.html', productos = productos, time = time)
 
 
-@main.route('/catalogo-suministro-roleo-3', methods=['GET', 'POST'])
+@main.route('/catalogo-suministro-roleo-3')
 def catalogue_three():
     productos = get_productos_dijonas()
     time = datetime.now()
-    return render_template('download_dijonas.html', productos = productos, time = time)
+    return render_template('catalogue_three.html', productos = productos, time = time)
 
 
 

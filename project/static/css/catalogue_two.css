@@ -1,0 +1,13 @@
+/* IMPRESION */
+@media print {
+  @page {
+    size: 8.2in 425.2in; /*destacados ON + 10*/
+    margin-top: 0cm;
+    margin-left: 0cm;
+    margin-right: 0cm;
+    margin-bottom: 0cm;
+  }
+  .btn-descarga{
+    display: none;
+  }
+}

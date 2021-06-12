@@ -1,64 +1,43 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base_catalogue.html" %}
 
-    <meta name="robots" content="noindex">
-    <meta name="googlebot" content="noindex">
+{% block tittle %}Suministro-Roleo_Catalogo-1{% endblock %}
+{% block edition %}Catalogo II{% endblock %}
 
-    <link rel="stylesheet" href="/static/css/download.css">
-    <!-- FONT & ICONS-->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
 
-    <link rel="shortcut icon" href="/static/images/marca/logofavicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="/static/css/normalize.css">
-    <title>Document</title>
-</head>
-<body>
-    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
-
-    <div class="btn-descarga">
-        <div class="arrow-back">
-            <a href="{{ url_for('main.dashboard') }}"><ion-icon name="arrow-undo-outline"></ion-icon></a>
-        </div>
-       <input type="button" value="Guardar PDF" onclick="save_pdf()">
-    </div>
-
-    <div class="portada">
-        <div class="portada-logo">
-            <img src="/static/images/marca/logo_colorgrande.png" alt="">
-        </div>
-        <div class="portada-title">
-            <h1>SUMINISTRO ROLEO C.A</h1>
-            <p>CATALOGO  - {{time.day}} / {{time.month}} / {{time.year}}</p>
-        </div>
-    </div>
-
-    <!--
+{% block destacado %}
+     <!--
     <div class="destacados">
         <div class="destacado1">
-            <div class="img-destacado"></div>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <div class="img-destacado">
+                <img src="/static/images/catalogo/TEI-01.png" alt="">
+            </div>
+            <p class="destacados-precio">12.2$</p>
+            <p> <strong> Code </strong> Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>
         <div class="destacado2">
-            <div class="img-destacado"></div>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <div class="img-destacado">
+                <img src="/static/images/catalogo/TEI-01.png" alt="">
+            </div>
+            <p class="destacados-precio">12.2$</p>
+            <p> <strong> Code </strong> Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>
         <div class="destacado3">
-            <div class="img-destacado"></div>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>        
+            <div class="img-destacado">
+                <img src="/static/images/catalogo/TEI-11.png" alt="">
+            </div>
+            <p class="destacados-precio">12.2$</p>
+            <p> <strong> Code </strong> Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>        
         </div>
     </div>
-    -->
+-->
+{% endblock %}
 
-    <div class="barra-init">
-        <p></p>
-    </div>
 
+{% block content %}
+
+
+    <link rel="stylesheet" href="/static/css/catalogue_two.css">
 
     <div class="grid">
         {% set pag = [0] %}
@@ -120,20 +99,13 @@
 
         {% endfor %}
     </div>
-
-    <div class="cierre">
-        <p>SUMINISTRO ROLEO C.A 2021</p>
-    </div>
-
-
-
-    <!-- ICONS-->
-    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+     
+{% endblock %}
 
 
 
 
-<!--onerror="this.style.display='none'"    onerror="this.src='static/images/icons/no-disponible.png'"  onerror="this.closest('.card').style.display='none'"-->
+    
 
-</body>
-</html>
+
+

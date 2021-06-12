@@ -134,13 +134,23 @@ a{
   grid-template-rows:   1fr 1fr;
   grid-template-areas:  "one  two"
                         "one  three"; 
-  height: 8.7in;
+  height: 10in;
+  gap: 4;
   
-  margin-bottom: 180px;
+}
+.destacados div > p { 
+  margin: 0 2rem 1rem 2rem;
+ }
+.destacado1, .destacado2, .destacado3{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
 }
 .destacado1 {
   grid-area: one;
-  background-color: #2a9d8f;
+  background-color: #0bce7072;
   background-image: url(/static/images/Destacados/);
 }
 .destacado2 {
@@ -149,7 +159,25 @@ a{
 }
 .destacado3 {
   grid-area: three;
-  background-color: #e76f51;
+  background-color: #ff3300c4;
+}
+.destacados-precio{
+  font-size: 1.8rem;
+  font-weight: 900;
+  align-self: baseline;
+  margin: .8rem 0 ;
+  color: var(--price-font);
+}
+
+
+
+/*  Barra ______________________________________________________________*/
+.barra-init{
+  display: block;
+  height: 30px;
+  width: 100%;
+  margin-bottom: 180px;
+  background-color: #0b3e5f;
 }
 
 
@@ -304,7 +332,7 @@ a{
   font-size: .8rem;
 }
 .pagina p{
-  background-color: #335c67;
+  background-color: #0b3e5f;
   padding: 0.6rem;
   color: white;
   font-weight: 500;
@@ -318,7 +346,7 @@ a{
   position: relative;
   left: -9%;
   width: 16px;
-  background-color: #c1121f;
+  background-color: #0b3e5f;
   height: 100%;
 }
 
@@ -328,8 +356,8 @@ a{
   width: 110vw;
   height: 100%;
   padding: 1.5rem;
-  background-color: #003049;
-
+  background: rgb(195,34,37);
+  background: linear-gradient(118deg, rgba(195,34,37,1) 0%, rgba(11,62,95,0.6783088235294117) 51%, rgba(0,0,48,1) 100%);
 }
 .barra-content-img {
   display: inline-block;
@@ -367,31 +395,4 @@ a{
   justify-content: flex-end;
   align-items:center;
   padding: 2rem;
-}
-.cierre p{
-  color: white;
-  font-size: 1.5rem;
-  z-index: 1000px;
-}
-
-.barra-init{
-  display: block;
-  height: 30px;
-  width: 100%;
-  margin-bottom: 180px;
-  background-color: #003049;
-  z-index: 1000px;
-}
-/* IMPRESION */
-@media print {
-  @page {
-    /*size: 8.2in 800.2in; */
-    margin-top: 0cm;
-    margin-left: 0cm;
-    margin-right: 0cm;
-    margin-bottom: 0cm;
-  }
-  .btn-descarga{
-    display: none;
-  }
 }
