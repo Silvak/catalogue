@@ -1,7 +1,7 @@
+
 .container{
     animation: transition-page 0.75s;
-}
-
+} 
 
 @keyframes transition-page{
     from {
@@ -91,7 +91,7 @@
     color: #103E60;
 }
 
-.danger{
+.danger > .content{
     background-color: #F2D5DB;
     color: #552E31; 
 }

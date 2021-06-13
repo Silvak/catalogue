@@ -10,7 +10,7 @@ from flask import flash
 from flask_login import login_required, current_user
 from .files import file_management, allowed_file, import_data, img_management
 from werkzeug.utils import secure_filename
-from .models import  all_paginated, get_productos_usy, get_productos_marca, get_productos_dijonas
+from .models import  all_paginated, get_productos_usy, get_productos_marca, get_productos_dijonas,  Productos_usy, Productos_marca, Productos_dijonas
 from datetime import datetime
 #import pdfkit
 
@@ -20,11 +20,15 @@ main = Blueprint('main', __name__)
 #landing page
 @main.route('/', methods=['GET', 'POST'])
 def index():
-    return redirect( url_for('main.online_catalog'))
+    if request.method == 'POST':
+        busqueda = request.form.get('busqueda')
+        d1 = Productos_usy.query.filter(Productos_usy.Descripcion.contains(busqueda) & (Productos_usy.Disponibilidad != '0' or Productos_usy.Disponibilidad != None)).all()
+
+    return render_template('index.html')
 
 
 #______________________________________ catalogo de busqueda online ___________________________________
-@main.route('/catalogo')
+@main.route('/catalogo', methods=['GET', 'POST'])
 def online_catalog():
     productos = all_paginated()
     return  render_template('catalog.html', productos = productos)

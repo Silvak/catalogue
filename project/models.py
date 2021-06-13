@@ -143,3 +143,9 @@ def all_paginated(page=1, per_page=20):
 
 
 
+def busqueda(a):
+    d1 = Productos_usy.query.filter(Productos_usy.Descripcion.contains(a) & (Productos_usy.Disponibilidad != '0' or Productos_usy.Disponibilidad != None)).all()
+    d2 = Productos_marca.query.filter(Productos_marca.Descripcion.contains(a) & (Productos_marca.Disponibilidad != '0' or Productos_marca.Disponibilidad != None)).all()
+    d3 = Productos_dijonas.query.filter(Productos_dijonas.Descripcion.contains(a) & (Productos_dijonas.Disponibilidad != '0' or Productos_dijonas.Disponibilidad != None)).all()
+    dato = d1
+    return pd.unique(dato)

@@ -16,7 +16,7 @@
     <title>{% block tittle %}{% endblock %}</title>
 </head>
 <body>
-    
+   <!-- 
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages%}
@@ -26,16 +26,16 @@
                         <div class="content-text">{{alert[0]}}.
                         <a href="#"></a></div>
                         <div class="content-buttons" id="close-btn">
-                            <ion-icon name="close-outline"></ion-icon>
+                            <a href="#" id="close-btn"><ion-icon name="close-outline"></ion-icon></a>
                         </div>
                     </div>
                 </div>
                 <div class="notification">
-                <script src="static/js/base.js" type="text/javascript"></script>
+                <script src="../static/js/base.js" type="text/javascript"></script>
            {% endfor %}
         {% endif %}
     {% endwith %}
-
+--> 
     {% include "navbar.html" %}
     
     <div class="container">
@@ -43,8 +43,10 @@
         {% endblock %}
     </div>
     
-
+        {% block index %}
+        {% endblock %}
     
+
 </body>
 </html>
 
