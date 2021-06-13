@@ -32,23 +32,4 @@ function inicio(){
     }
 }
 
-function save_pdf() {
-    window.print();
-}
 
-
-//var altoOriginal = img.naturalHeight;
-//console.log(altoOriginal);
-
-//var img = document.images[1];
-/*
-    
-var altoOriginal = img.naturalHeight;
-
-if (altoOriginal > 500){
-    var d = document.getElementById('cosa');
-    d.className = 'grid_one';
-    console.log('xd');
-}
-
-*/

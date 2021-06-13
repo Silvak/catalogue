@@ -1,6 +1,8 @@
 from flask_login import UserMixin
 from . import db
 
+import pandas as pd
+
 from werkzeug.security import  check_password_hash
 
 
@@ -91,23 +93,52 @@ class Productos_dijonas(db.Model):
 #________________________________CRUD________________________________________
 
 def get_productos_usy():
-    dato = Productos_usy.query.with_entities(Productos_usy.id, Productos_usy.Disponibilidad, Productos_usy.Precio, Productos_usy.Descuento, Productos_usy.Descripcion).filter(Productos_usy.Disponibilidad != '0' or Productos_usy.Disponibilidad != None).all()
-    # tomas = Productos_usy.query.filter(Productos_usy.Descripcion.contains('toma') & (Productos_usy.Disponibilidad != '0' or Productos_usy.Disponibilidad != None)).all()
-    return  dato
+    #dato = Productos_usy.query.with_entities(Productos_usy.id, Productos_usy.Disponibilidad, Productos_usy.Precio, Productos_usy.Descuento, Productos_usy.Descripcion).filter(Productos_usy.Disponibilidad != '0' or Productos_usy.Disponibilidad != None).all()
+    name_items = [
+                    'accesorio', 'Jabonera', 'Perchero', 'toallero' , 'papel', 'regadera' , 'ducha', 'fregadero', 'griferia', 'lavamanos', 'rejilla cuadrada', 'rejilla rectangular', 'calentador'
+                    'canilla', 'desague para', 'herraje para', 'flotante', 'colector', 'conexión para manguera', 'manguera', 'conector', 'unión', 'check', 'valvula' , 'compacta', 'compuerta', 'vastago', 'manilla metálica', 'manilla plástic', 'extension', 'agua', 'sifon', 'tubo flexible', 
+                    'Bomba', 'tanque', 'hidrocompacto', 'gato', 'taladro', 'tronzadora', 'sierra',
+                    'toma', 'enchufe', 'interruptor' , 'timbre' , 'breakers', 'cable', 'receptáculo', 'receptaculo', 'socate',
+                    'bombillo', 'oval', 'lámpara', 'lampara', 'luminaria', 'fotocélula', 'lente', 'reflector', 'LED', 'tirrap'
+                    'cepillo', 'espatula', 'cinta', 'teipe', 'tirro', 'cuchara', 'cizalla', 'deztupidor', 'amolar', 'pistola', 'plato', 'probador', 'tijera', 'tenaza', 
+                    'cerradura', 'cerrojo', ' '
+                  ]
+
+    order_items = []
+    for item in name_items:
+        data = Productos_usy.query.filter(Productos_usy.Descripcion.contains(item) & (Productos_usy.Disponibilidad != '0' or Productos_usy.Disponibilidad != None)).all()
+        order_items.extend(data)
+    return  pd.unique(order_items)
+
 
 def get_productos_marca():
-    dato = Productos_marca.query.filter(Productos_marca.Disponibilidad != '0' or Productos_marca.Disponibilidad != None).all()
-    return  dato
+    name_items = [' 3M', ' Black & Decker',  ' Dewalt',  ' EarthBulb', ' Eaton', ' EZ WELD', ' Flexon', ' Lenox', ' Pedrollo', ' Stanley', ' Valley', ' Wisdom', ' Sunico',
+                    ' West Chester', ' Torin Jack', ' Tramontina', ' Victor', 'West Arco', ' AW hogar', ' Korclass', ' Kdp', ' '   
+                    ]
+
+    order_items = []
+    for item in name_items:
+        data = Productos_marca.query.filter(Productos_marca.Descripcion.contains(item) & (Productos_marca.Disponibilidad != '0' or Productos_marca.Disponibilidad != None)).all()
+        order_items.extend(data)
+    return  pd.unique(order_items)
+
 
 def get_productos_dijonas():
-    dato = Productos_dijonas.query.filter(Productos_dijonas.Disponibilidad != '0' or Productos_dijonas.Disponibilidad != None).all()
-    return  dato
+    name_items = ['fregadero', 'lavamanos', 'sanitario', 'herraje', 'tapa',  'batea', 'porcelanato', 'mueble', ' ']
 
+    order_items = []
+    for item in name_items:
+        data = Productos_dijonas.query.filter(Productos_dijonas.Descripcion.contains(item) & (Productos_dijonas.Disponibilidad != '0' or Productos_dijonas.Disponibilidad != None)).all()
+        order_items.extend(data)
+    return  pd.unique(order_items)
+
+'''
 def get_productos_id(id):
     datos = Productos_usy.query.filter_by(id=id).first()
     return datos
+'''
 
-def all_paginated(page=2, per_page=9):
+def all_paginated(page=1, per_page=20):
     return Productos_usy.query.paginate(page=page, per_page=per_page, error_out=False)
 
 
