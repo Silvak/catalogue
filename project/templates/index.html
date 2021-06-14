@@ -2,12 +2,19 @@
 {% block tittle %}Home{% endblock %}
 
 {% block content %}
-    <link rel="stylesheet" href="static/css/index.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Source+Code+Pro:wght@600&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;700;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="static/css/index.css">
 
     <!--#########BARRA DE BUSQUEDA########## -->
     <div class="search">
         <div class="search-title">
-            <h1>Suministro Roleo distribuidora de confianza</h1>
+            <h1>Suministro Roleo</h1>
+            <p>- Tú distribuidora de confianza -</p>
         </div>
         <div class="search-bar sticky-bar">
             <form action="/search" method="post" id="search">
@@ -16,7 +23,7 @@
             </form>
         </div>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 200 1450 1000">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 200 1448 992">
             <path fill="#fff" fill-opacity="1" d="M 0 450 L 500 750 C 800 950 800 950 850 950 L 1150 950 C 1250 950 1200 950 1450 750 L 1450 750 L 1450 1200 L 0 1200 L 0 450  "></path>
         </svg>
     </div>
@@ -67,7 +74,7 @@
 
         <!--#########EXPLORAR CATEGORIAS########## -->
         <div class="explore">
-            <h2>Explore</h2>
+            <h2>Explora</h2>
             <div class="explore-grid">
 
                 <div class="explore-grid-card grid-one">
@@ -90,6 +97,11 @@
 
         </div>
 
+        <div class="banner-mid">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1450 1200">
+                <path fill="#303c8a" fill-opacity="1" d="M 0 50 L 350 300 C 500 400 550 450 550 500 L 500 800 C 450 950 400 950 300 1000 L 0 1150 L 0 50 "></path>
+            </svg>
+        </div>
 
         <!--#########DESCARGA CATALOGO########## -->
         <div class="download">
@@ -104,7 +116,7 @@
                     <input type="email" name="" id=""> 
                     <input type="text">
                     <input type="text">
-                    <button type="submit">Enviar</button>
+                    <button type="submit">Descargarr</button>
                 </form>
             </div>
             
@@ -126,16 +138,17 @@
                 <a href="#"></a>
             </div>
         </div>
+        <div class="banner-footer">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 160 1450 1000">
+                <path fill="#fff" fill-opacity="1" d="M 0 1050 L 800 700 C 1000 600 1100 600 1250 750 L 1450 950 L 1450 0 L 0 0 L 0 1050 "></path>
+            </svg>
+        </div>
+    
 
     </div>
     
 
-    <div class="banner-footer">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 200 1450 600">
-            <path fill="#fff" fill-opacity="1" d="M 0 0 L 0 550 C 50 650 100 600 350 500 L 950 250 C 1100 200 1100 200 1450 500 L 1450 500 L 1450 0 L 0 0 "></path>
-        </svg>
-    </div>
-
+    
     <!-- Core theme JS-->
     <script src="static/js/index.js"></script>
 {% endblock %}
