@@ -20,10 +20,6 @@ main = Blueprint('main', __name__)
 #landing page
 @main.route('/', methods=['GET', 'POST'])
 def index():
-    if request.method == 'POST':
-        busqueda = request.form.get('busqueda')
-        d1 = Productos_usy.query.filter(Productos_usy.Descripcion.contains(busqueda) & (Productos_usy.Disponibilidad != '0' or Productos_usy.Disponibilidad != None)).all()
-
     return render_template('index.html')
 
 
