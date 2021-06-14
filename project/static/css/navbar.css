@@ -1,8 +1,15 @@
 :root{
     /*Colores*/
-    --first-color: #dc3424;
-    --second-color: #959eab;
+    
+    
     --dark-color: #0c4464;
+
+    --first-color: #dc3424;
+    --second-color: #46b183;
+    --border-color: #243762;
+    --back-color-one: #ECF1F7;
+
+
     --white-color: #849cac;
     --shadow-color: 0px 11px 17px 2px rgba(106,113,220,0.16);
     --btn-color: #1a2dff;
@@ -10,8 +17,8 @@
     
     /*Fuente y tipografia*/
     --body-font: 'Poppins', sans-serif;
-    --normal-font: .938rem;
-    --smal-font: .813rem;
+    --normal-font: .93rem;
+    --smal-font: .82rem;
 }
 
 /*___________NAVBAR_____________--*/    
@@ -23,17 +30,17 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: ease-in .6s;
-    padding: 1rem 3vw;
+    transition: ease-in .4s;
+    padding: 1rem 2vw;
     z-index: 1000;
     font-family: var(--body-font);
 }
 
 header.sticky{
-    padding: 1rem 3vw;
+    padding: 1rem 2vw;
     background-color: #ffffff;
-    transition: ease-out .4s;
-    border: 1px solid #c6c6c63e;
+    transition: ease-out .2s;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .logo{
@@ -61,18 +68,34 @@ header ul{
 header ul li{
     position: relative;
     list-style: none;
-    color: white;
 }
 header ul li a{
+    text-decoration: none;
     position: relative;
-    margin: 0 15px;
+    margin: 0 8px;
     color: rgb(255, 255, 255);
     letter-spacing: 2px;
     font-weight: 500;
-    transition: ease-in .5s;
+    transition: ease-in .2s;
+    border: 1px solid var(--back-color-one);
+    padding: .5rem .7rem;
+    border-radius: 3px;
+    font-weight: 500;
 }
 
-header.sticky ul li {
-    color: #000;
-    z-index: 1001;
+header ul li a:hover{
+    color: white;
+    background-color: var(--btn-color);
+    transition: ease-in .2s;
+}
+
+header.sticky ul li a {
+    color: rgb(38, 38, 38);
+    background-color: var(--back-color-one);
+}
+
+header.sticky ul li a:hover {
+    color: white;
+    background-color: var(--btn-color);
+    transition: ease-in .2s;
 }
