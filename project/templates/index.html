@@ -94,7 +94,6 @@
                     <p>Categoria</p>
                 </div>
             </div>
-
         </div>
 
         <div class="banner-mid">
@@ -107,16 +106,26 @@
         <div class="download">
             <h2>Descarga el Catalogo</h2>
             <p>Si requieres de acceso a nuestros productos de manera offline descarga.</p>
-            <button type="submit">Enviar</button>
+            <button type="submit">Descarga</button>
         </div>
 
         <div class="contact">
+            <h2>Contactanos</h2>
             <div class="contact-form">
                 <form action="" method="post">
-                    <input type="email" name="" id=""> 
-                    <input type="text">
-                    <input type="text">
-                    <button type="submit">Descargarr</button>
+                    <div class="contact-from_item">
+                        <p>Nombre</p>
+                        <input type="text" placeholder="Nombre" name="" id=""> 
+                    </div>
+                    <div class="contact-from_item">
+                        <p>Email</p>
+                        <input type="email" placeholder="Email" name="" id=""> 
+                    </div>
+                    <div class="contact-from_item">
+                        <p>Mensaje</p>
+                        <input type="text" placeholder="Escribe un mensaje..." name="" id=""> 
+                    </div>
+                    <button type="submit">Enviar</button>
                 </form>
             </div>
             
@@ -127,23 +136,24 @@
 
 
         <!--#########FOOTER ########## -->
-        <div class="footer">
-            <div class="footer-derechos">
-                <p>copy; Suministros Roleo. Derechos reservados</p>
-            </div>
-            <div class="footer-social">
-                <h3>Redes Sociales</h3>
-                <a href="#"></a>
-                <a href="#"></a>
-                <a href="#"></a>
-            </div>
-        </div>
-        <div class="banner-footer">
+        <div class="banner">
+            
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 600 1450 740">
                 <path fill="#fff" fill-opacity="1" d="M 0 1050 L 800 700 C 1000 600 1100 600 1250 750 L 1450 950 L 1450 0 L 0 0 L 0 1050 "></path>
             </svg>
+            <div class="footer-content">
+                <div class="brand">
+                    <a href="{{ url_for('main.index') }}" class="footer-logo"> <img src="/static/images/marca/logo_white.png" alt="" srcset=""></a>
+                    <p>&copy;Suministros Roleo C.A - Derechos reservados</p>
+                </div>
+                <div class="footer-social">
+                    <h3>Redes Sociales</h3>
+                    <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+                    <a href="#">O</a>
+                    <a href="#"><ion-icon name="share-social-outline"></ion-icon></a>
+                </div>
+            </div>
         </div>
-    
 
     </div>
     

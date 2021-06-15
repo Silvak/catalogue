@@ -79,7 +79,7 @@ header ul li a{
     transition: ease-in .2s;
     border: 1px solid var(--back-color-one);
     padding: .5rem .7rem;
-    border-radius: 3px;
+    border-radius: 4px;
     font-weight: 500;
 }
 
