@@ -1,8 +1,7 @@
-let close_button = document.getElementById('close-btn');
-
-
+  
+let close_button = document.getElementById('close-button');
 close_button.addEventListener("click", function(e) {
     e.preventDefault();
-    document.getElementById("window-notification").style.display = "none";
-    console.log("a");
+    document.getElementById("window-notice").style.display = "none";
 });
+

@@ -21,6 +21,10 @@
     --smal-font: .82rem;
 }
 
+body{
+    font-family: var(--body-font);
+}
+
 /*___________NAVBAR_____________--*/    
 header{
     position: fixed;

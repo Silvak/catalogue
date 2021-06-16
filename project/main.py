@@ -100,12 +100,6 @@ def dashboard():
                 file_management(f, filename) 
                 flash('Actualizacion exitosa.success') 
             
-            try:
-                import_data()
-                flash('Actualizacion catalogo exitosa.success')
-            except:
-                flash('No se ha podido actualizar lista de productos.warning')
-
     #Recive imagen png
     if request.form.get('btn') == 'Subir Imagen':
         if request.method == 'POST':
