@@ -138,7 +138,7 @@ def get_productos_id(id):
     return datos
 '''
 
-def all_paginated(page=1, per_page=20):
+def all_paginated(page, per_page):
     return Productos_usy.query.paginate(page=page, per_page=per_page, error_out=False)
 
 

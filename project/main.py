@@ -24,9 +24,13 @@ def index():
 
 
 #______________________________________ catalogo de busqueda online ___________________________________
-@main.route('/catalogo', methods=['GET', 'POST'])
-def online_catalog():
-    productos = all_paginated()
+@main.route('/catalogo/', methods=['GET', 'POST'], defaults={"page": 1})
+@main.route('/catalogo/<int:page>', methods=['GET', 'POST'])
+def online_catalog(page):
+    page = page
+    pages  = 2
+
+    productos = all_paginated(page, pages)
     return  render_template('catalog.html', productos = productos)
 
 
@@ -83,11 +87,11 @@ def catalogue_three():
     return render_template('catalogue_three.html', productos = productos, time = time)
 
 
-
 #______________________________________ panel de administracion de datos_______________________________________________-
-@main.route('/dashboard', methods=['GET', 'POST'])
+@main.route('/dashboard/', methods=['GET', 'POST'], defaults={"page": 1})
+@main.route('/dashboard/<int:page>', methods=['GET', 'POST'])
 @login_required
-def dashboard():
+def dashboard(page):
 
     #Recive archivo excel
     if request.form.get('btn') == 'Subir Archivo':
@@ -98,8 +102,13 @@ def dashboard():
             if f and allowed_file(f.filename):
                 filename = secure_filename(f.filename)
                 file_management(f, filename) 
-                flash('Actualizacion exitosa.success') 
-            
+                try:
+                    import_data()
+                    flash('Base de datos actualizada.success') 
+                except ValueError:
+                    flash('Ocurrio un error al intentar actualizar los productos.warning') 
+
+ 
     #Recive imagen png
     if request.form.get('btn') == 'Subir Imagen':
         if request.method == 'POST':
@@ -112,8 +121,22 @@ def dashboard():
                 flash('Imagen subida exitosamente.success') 
 
 
-    return  render_template('dashboard.html', username=current_user.username)
+
+    page = page
+    pages = 10
+
+    productos_usys = all_paginated(page, pages)
+
+    if request.method == 'POST' and 'tag' in request.form:
+        tag = request.form["tag"]
+        search = "%{}%".format(tag)
+        print('###################################################### ' + search)
+        productos_usys = Productos_usy.query.filter(Productos_usy.id.contains(search.upper())).paginate(per_page=pages, error_out=True)
+        return render_template('dashboard.html',  productos_usy_table = productos_usys, tag = tag, username=current_user.username)
 
 
+    return  render_template('dashboard.html',  productos_usy_table = productos_usys, username=current_user.username)
 
+
+#username=current_user.username,
 

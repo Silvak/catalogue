@@ -12,13 +12,17 @@
 
     --white-color: #849cac;
     --shadow-color: 0px 11px 17px 2px rgba(106,113,220,0.16);
-    --btn-color: #1a2dff;
+    --btn-color: #5965ed;
     --btn-color-ligth: #eff0f7;
     
     /*Fuente y tipografia*/
     --body-font: 'Poppins', sans-serif;
     --normal-font: .93rem;
     --smal-font: .82rem;
+}
+
+a{
+    text-decoration: none;
 }
 
 body{
@@ -102,4 +106,44 @@ header.sticky ul li a:hover {
     color: white;
     background-color: var(--btn-color);
     transition: ease-in .2s;
+}
+
+/*______________________DROP BTN____________________________*/
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 1.5rem;
+  min-width: 160px;
+  z-index: 1;
+  background-color: #ffffff;
+}
+
+.dropdown-content a {
+  color: black;
+  display: block;
+  border-radius: 0;
+  padding: .9rem;border: none;
+  margin: 0;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+
+    .descarga{
+        display: none;
+    }
+    .pedidos{
+        display: none;
+    }
 }
