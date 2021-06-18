@@ -40,9 +40,9 @@ def catalogue_three():
 
 
 #______________________________________ panel de administracion de datos_______________________________________________-
-@main.route('/', methods=['GET', 'POST'], defaults={"page": 1})
-@main.route('/<int:page>', methods=['GET', 'POST'])
-def dashboard(page):
+@main.route('/', methods=['GET', 'POST'], defaults={"page": 1, "page_m": 1})
+@main.route('/<int:page>/<int:page_m>', methods=['GET', 'POST'])
+def dashboard(page, page_m):
 
     #Recive archivo excel
     if request.form.get('btn') == 'Subir Archivo':
@@ -72,20 +72,37 @@ def dashboard(page):
                 flash('Imagen subida exitosamente.success') 
 
 
-
     page = page
+    
+    page_m = page_m
     pages = 10
 
+
     productos_usys = all_paginated(page, pages)
+    productos_marcas = Productos_marca.query.paginate(page=page, per_page=pages, error_out=True)
+    productos_dijona = Productos_dijonas.query.paginate(page=page_m, per_page=pages, error_out=True)
 
     if request.method == 'POST' and 'tag' in request.form:
         tag = request.form["tag"]
         search = "%{}%".format(tag)
-        print('###################################################### ' + search)
-        productos_usys = Productos_usy.query.filter(Productos_usy.id.contains(search.upper())).paginate(per_page=120, error_out=True)
-        return render_template('dashboard.html',  productos_usy_table = productos_usys, tag = tag)
+        productos_usys = Productos_usy.query.filter(Productos_usy.id.contains(search.upper())).paginate(per_page=pages, error_out=True)
+        return render_template('dashboard.html',  productos_usy_table = productos_usys, productos_marcas_table = productos_marcas, productos_dijona_table = productos_dijona ,tag = tag)
+
+    if request.method == 'POST' and 'tag_m' in request.form:
+        tag_m = request.form["tag_m"]
+        search = "%{}%".format(tag_m)
+        productos_marcas = Productos_marca.query.filter(Productos_marca.id.contains(search.upper())).paginate(per_page=pages, error_out=True)
+        return render_template('dashboard.html',  productos_usy_table = productos_usys, productos_marcas_table = productos_marcas, productos_dijona_table = productos_dijona ,tag_m = tag_m)
+
+    if request.method == 'POST' and 'tag_d' in request.form:
+        tag_d = request.form["tag_d"]
+        search = "%{}%".format(tag_d)
+        productos_dijona = Productos_dijonas.query.filter(Productos_dijonas.id.contains(search.upper())).paginate(per_page=pages, error_out=True)
+        return render_template('dashboard.html',  productos_usy_table = productos_usys, productos_marcas_table = productos_marcas, productos_dijona_table = productos_dijona ,tag_d = tag_d)
 
 
-    return  render_template('dashboard.html',  productos_usy_table = productos_usys)
+
+
+    return  render_template('dashboard.html',  productos_usy_table = productos_usys, productos_marcas_table = productos_marcas, productos_dijona_table = productos_dijona)
 
 
