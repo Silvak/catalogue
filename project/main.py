@@ -17,54 +17,6 @@ from datetime import datetime
 
 main = Blueprint('main', __name__)
 
-#landing page
-@main.route('/', methods=['GET', 'POST'])
-def index():
-    return render_template('index.html')
-
-
-#______________________________________ catalogo de busqueda online ___________________________________
-@main.route('/catalogo/', methods=['GET', 'POST'], defaults={"page": 1})
-@main.route('/catalogo/<int:page>', methods=['GET', 'POST'])
-def online_catalog(page):
-    page = page
-    pages  = 2
-
-    productos = all_paginated(page, pages)
-    return  render_template('catalog.html', productos = productos)
-
-
-#_____________________________________ links buttons de descarga pdf _________________________________
-@main.route('/descarga', methods=['GET', 'POST'])
-def download():
-
-    return render_template('download_link.html')
-
-
-#generar descargas automaticas de archivos pdf subidos
-@main.route('/descarga/catalogo',  methods=['GET', 'POST'])
-def download_file():
-    #paht_catalog =  './data/pdf/catalogo_roleo_1.pdf' 
-    return '_' #send_file(paht_catalog, as_attachment=True)
-
-
-'''
-#generacion catalogo individual - vistas individuales de descarga catalogo
-@main.route('/descarga-catalogo-electricos')
-def download_one():
-    config = pdfkit.configuration(wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe") 
-    productos = get_productos()
-    time = datetime.now()
-    rendered =  render_template('download.html', productos = productos, time = time)
-    pdf = pdfkit.from_string(rendered, False, configuration=config)
-
-    response = make_response(pdf)
-    response.headers['Content-Type'] = 'application/pdf'
-    response.headers['Content-Disposition'] = 'inline; filename=output.pdf'
-
-    return response
-'''
-
 # _______________________________ vistas de catalogo por seccion _________________________________________--
 @main.route('/catalogo-suministro-roleo-1')
 def catalogue_one():
@@ -88,9 +40,8 @@ def catalogue_three():
 
 
 #______________________________________ panel de administracion de datos_______________________________________________-
-@main.route('/dashboard/', methods=['GET', 'POST'], defaults={"page": 1})
-@main.route('/dashboard/<int:page>', methods=['GET', 'POST'])
-@login_required
+@main.route('/', methods=['GET', 'POST'], defaults={"page": 1})
+@main.route('/<int:page>', methods=['GET', 'POST'])
 def dashboard(page):
 
     #Recive archivo excel
@@ -131,12 +82,10 @@ def dashboard(page):
         tag = request.form["tag"]
         search = "%{}%".format(tag)
         print('###################################################### ' + search)
-        productos_usys = Productos_usy.query.filter(Productos_usy.id.contains(search.upper())).paginate(per_page=pages, error_out=True)
-        return render_template('dashboard.html',  productos_usy_table = productos_usys, tag = tag, username=current_user.username)
+        productos_usys = Productos_usy.query.filter(Productos_usy.id.contains(search.upper())).paginate(per_page=120, error_out=True)
+        return render_template('dashboard.html',  productos_usy_table = productos_usys, tag = tag)
 
 
-    return  render_template('dashboard.html',  productos_usy_table = productos_usys, username=current_user.username)
+    return  render_template('dashboard.html',  productos_usy_table = productos_usys)
 
-
-#username=current_user.username,
 

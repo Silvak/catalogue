@@ -5,11 +5,8 @@
 <link rel="stylesheet" href="../static/css/normalize.css">
 <link rel="stylesheet" href="../static/css/dashboard.css">
 
-<div class="banner"></div>
-
 <div class="gridcontainer">
-    <a href="#sidebar-btn" class="side-btn"><ion-icon name="menu-outline"></ion-icon></a>
-    <div class="gridcontainer-sidebar" id="sidebar-btn">
+    <div class="gridcontainer-sidebar">
         <div class="gridcontainer-sidebar_list">
             <H3>Panel de Administracion</H3>
             <ul>
@@ -18,7 +15,6 @@
                     <a href="{{ url_for('main.catalogue_one') }}">Catalogo 1</a>
                     <a href="{{ url_for('main.catalogue_two') }}">Catalogo 2</a>
                     <a href="{{ url_for('main.catalogue_three') }}">Catalogo 3</a>
-                    <a href="" class="sidebar_list_close"><ion-icon name="close-outline"></ion-icon></a>
                 </li>
             </ul>
         </div>
