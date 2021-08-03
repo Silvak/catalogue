@@ -14,6 +14,10 @@ from .models import  all_paginated, get_productos_usy, get_productos_marca, get_
 from datetime import datetime
 #import pdfkit
 
+import os 
+import numpy as np
+import cv2
+
 
 main = Blueprint('main', __name__)
 
@@ -37,6 +41,62 @@ def catalogue_three():
     productos = get_productos_dijonas()
     time = datetime.now()
     return render_template('catalogue_three.html', productos = productos, time = time)
+
+
+
+@main.route('/catalogo')
+def catalogo():
+    productos = get_productos_marca()
+
+    ordered_products= []
+    temp_list = []
+    arr_index = 0
+    run  = True
+    while(run):
+        temp_list = []
+        count = 0
+        while(count < 9 and run):
+            if (arr_index < len(productos)):
+                size = ""
+                try:
+                    #tratamos de encontrar la imagen dentro de la carpeta del catalogo
+                    img = cv2.imread(f'./project/static/images/catalogo/{productos[arr_index].id}.png')
+                    height, width, channels = img.shape
+                    print (f'h:{height} w:{width} c:{channels}  #########################  IMAGEN EXISTE')
+                    size = size_images(height, width)
+                    temp_list.append(productos[arr_index])
+                    productos[arr_index].Descripcion = productos[arr_index].Descripcion + ";" + size
+                    
+                    if (size == "high" or size == "wide"):
+                        count = count + 2
+                    if (size == "big"):
+                        count = count + 4
+                    if (size == "normal"):
+                        count = count + 1
+                except:
+                    temp_list.append(productos[arr_index])
+                    productos[arr_index].Descripcion = productos[arr_index].Descripcion + ";"+"not image"
+                    count = count + 1
+                
+                arr_index = arr_index + 1
+                
+            else:
+                run = False
+        ordered_products.append(temp_list)
+    print(ordered_products[1][1].Descripcion)
+    return render_template('base_catalog.html', catalogo = ordered_products)
+
+
+def size_images(h, w):
+    if (h >= 300 and w <= 200):
+        size = "high"
+    elif (h <= 200 and w >= 300):
+        size = "wide"
+    elif (h >= 400 and w >= 400):
+        size = "big"
+    else:
+        size= "normal"
+    return  size
 
 
 #______________________________________ panel de administracion de datos_______________________________________________-
