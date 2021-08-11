@@ -46,53 +46,82 @@ def catalogue_three():
 
 @main.route('/catalogo')
 def catalogo():
-    productos = get_productos_marca()
+    productos = get_productos_usy()
 
     ordered_products= []
+    not_img_products= []
     temp_list = []
     arr_index = 0
     run  = True
     while(run):
         temp_list = []
         count = 0
-        while(count < 9 and run):
+        while(count < 9.0 and run):
             if (arr_index < len(productos)):
                 size = ""
                 try:
                     #tratamos de encontrar la imagen dentro de la carpeta del catalogo
                     img = cv2.imread(f'./project/static/images/catalogo/{productos[arr_index].id}.png')
                     height, width, channels = img.shape
-                    print (f'h:{height} w:{width} c:{channels}  #########################  IMAGEN EXISTE')
+                    #print (f'h:{height} w:{width} c:{channels}  #########################  IMAGEN EXISTE')
                     size = size_images(height, width)
-                    temp_list.append(productos[arr_index])
+                    
                     productos[arr_index].Descripcion = productos[arr_index].Descripcion + ";" + size
                     
-                    if (size == "high" or size == "wide"):
+                    # establecer que antes de guardar el producto en la lista temporal este no valga mas que 9
+                    if ((size == "high" or size == "wide") and (count + 2 <= 9)):
                         count = count + 2
-                    if (size == "big"):
+                        temp_list.append(productos[arr_index])
+                    if ((size == "big") and (count + 4 <= 9)):
                         count = count + 4
-                    if (size == "normal"):
+                        temp_list.append(productos[arr_index])
+                    if ((size == "normal")and (count + 1 <= 9)):
                         count = count + 1
+                        temp_list.append(productos[arr_index])
                 except:
-                    temp_list.append(productos[arr_index])
-                    productos[arr_index].Descripcion = productos[arr_index].Descripcion + ";"+"not image"
-                    count = count + 1
-                
+                    #not_img_products.append(productos[arr_index])
+                    #temp_list.append(not_img_products)
+                    not_img_products.append(productos[arr_index])
+
                 arr_index = arr_index + 1
                 
             else:
                 run = False
         ordered_products.append(temp_list)
-    print(ordered_products[1][1].Descripcion)
-    return render_template('base_catalog.html', catalogo = ordered_products)
+
+    arr_index = 0
+    for i in range(len(not_img_products)):
+        """
+        organizacion de productos sin imagenes
+        """
+        temp_list = []
+        
+        for n in range(21):
+            if (arr_index < len(not_img_products)):
+                not_img_products[arr_index].Descripcion = not_img_products[arr_index].Descripcion + ";not_img" 
+                temp_list.append(not_img_products[arr_index])
+                arr_index = arr_index + 1
+            
+            else:
+                break
+        else:
+            ordered_products.append(temp_list)
+            continue
+        break
+        
+    print(ordered_products)
+    time = datetime.now()
+    edition = "CATALOGO I"
+    description = "Duchas, regaderas, cosa etc etc"
+    return render_template('base_catalog.html', catalogo = ordered_products, time = time, edition = edition, description = description)
 
 
 def size_images(h, w):
-    if (h >= 300 and w <= 200):
+    if (h >= 280 and w <= 320):
         size = "high"
-    elif (h <= 200 and w >= 300):
+    elif (h <= 200 and w >= 350):
         size = "wide"
-    elif (h >= 400 and w >= 400):
+    elif (h > 500 and w > 500):
         size = "big"
     else:
         size= "normal"
