@@ -108,50 +108,82 @@ body{
   gap: 1rem;
 }
 .card{
+  position: relative;
   outline: 2px solid var(--back-color);
   grid-column: auto / span 1;
   grid-row: auto / span 1;
   overflow: hidden;
   justify-self:start;
-/*
   display: grid;
-  grid-template-columns : 1fr 1fr;
-  grid-template-rows: 100px 40px 70px;
-  grid-template-areas: 
-    "image image"
-    "price price"
-    "text text";*/
-  
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  padding: .5rem;
+  grid-template-columns : 1fr;
+  grid-template-rows: 65% 35%;
+  grid-template-areas: "img" "text";
 }
 
+.card-img{
+  grid-area:img;
+  /*outline: 2px solid var(--back-color);*/
+  margin: .6rem;
+}
 .card-img img{
   width: 100%;
   height: auto;
 }
 @supports(object-fit: cover){
-  .card-image img{
-    height: 100%;
-    object-fit: scale-down;
-    object-position: center center;
-  }
-}
-/*
-.card img{
-  grid-area: image;
-  object-fit: scale-down;
-  object-position: center center;
+    .card-img img{
+      height: 100%;
+      object-fit: scale-down;
+      object-position: center center;
+    }
 }
 
-.card p:nth-child(4){
+/*TEXT*/
+.card-text{
+  margin: 1rem;
   grid-area: text;
+  display: flex;
+  justify-content:space-between;
+  align-items:initial;
+  flex-wrap: wrap;
+  font-size: .85rem;
 }
-*/
+.card-text p:nth-child(1){
+  margin: auto;
+  outline: 2px solid var(--back-color);
+  padding: .2rem;
+}
+.card-text p:nth-child(2){
+  width: 80px;
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-align: right;
+}
+.card-text p:nth-child(3){
+  height: 70%;
+  width: 100%;
+}
+
+/* %%%%% */
+.card-descuento{
+  position: absolute;
+  height: 55px;
+  width: 55px;
+  text-align: right;
+  color: white;
+  padding: .6rem;
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  /*top: .6rem;
+  right: .6rem;*/
+  right: 0;
+  background-color:#3237c2;
+}
+
+/*SIZE CARDS*/
+.normal{
+  min-height: 240px;
+  grid-column: auto / span 1;
+  grid-row: auto / span 1;
+}
 .wide{
   grid-column: auto / span 2;
   grid-row: auto / span 1;
@@ -175,7 +207,7 @@ body{
 
 
 
-/* IMPRESION */
+/*####### PRINT #######*/
 @media print {
     @page {
       margin-top: 0cm;

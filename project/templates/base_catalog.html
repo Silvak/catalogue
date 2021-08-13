@@ -45,18 +45,24 @@
 
                             {% if size == "not_img"%}
                             <div class="card {{size}}">
-                                <p>{{product.id}}</p>
-                                <p>{{product.Precio}}$ {{product.Descuento}}</p>
-                                <p>{{text}}.</p>
+                                <div class="card-text">
+                                    <p>{{product.id}}</p>
+                                    <p>{{product.Precio}}$ {{product.Descuento}}</p>
+                                    <p>{{text}}.</p>
+                                </div>
                             </div>
                             {% else %}
                             <div class="card {{size}}">
                                 <div class="card-img">
                                     <img src="../static/images/catalogo/{{product.id}}.png" alt="" srcset="">
                                 </div>
-                                <p>{{product.id}}</p>
-                                <p>{{product.Precio}}$ {{product.Descuento}}</p>
-                                <p>{{text}}.</p>
+                                <div class="card-text">
+                                    <p>{{product.id}}</p>
+                                    <p>{{product.Descuento}}- ${{product.Precio}}</p>
+                                    <p>{{text}}.</p>
+                                    
+                                </div>
+                                <div class="card-descuento">%</div>
                             </div>
                             {% endif %}
                         
