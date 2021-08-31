@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/catalogue.css') }}">
+    
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;600;900&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="../static/images/marca/logofavicon.png" type="image/x-icon">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="actions">
+        <button><a href="{{ url_for('main.dashboard') }}"> < </a></button> 
+        <p>Antes de guardar  establesca el tamaño del papel en <strong>A4</strong>  y habilite los graficos de fondo.</p>
+        <input type="button" value="Guardar PDF" onclick="window.print()">
+    </div>
+    <div class="first-page">
+        <div class="fisrt-page_text">
+            <p>{{time.day}} - {{time.month}} - {{time.year}}</p>
+            <h2>{{edition}}</h2>
+            <p>{{description}}</p>
+        </div>
+        <img src="../static/images/portada.jpg" alt="">
+    </div>
+    
+    <div class="sheets">
+        {% for product_list in catalogo %}
+            <div class="sheet-grid">
+                <div class="sheet-grid_head">
+                    <img src="../static/images/banner.png" alt="">
+                    <div class="categoria">
+                        {% for categorie in categories %}
+                            {% for product in product_list %}
+                                {% if categorie in product.Descripcion %}
+                                    {% set text = categorie|upper %}
+                                    <p>{{text}}</p>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                        
+                    </div>
+                </div>
+                <div class="sheet-grid_content">
+
+                        {% for product in product_list %}
+                        {% set text, size = product.Descripcion.split(';')[:2] %}
+                            {% if size == "not_img"%}
+                            {% endif %}
+
+                            {% if size == "not_img"%}
+                            <div class="card {{size}}">
+                                <div class="card_notimg">
+                                    <div class="card-content_code"> <p>{{product.id}}</p> </div>
+                                    <div class="card-content_price">
+                                        {% set descuento = product.Descuento | float %}
+                                        {% set precio = product.Precio | float %}
+                                        {% if descuento > 0 %}           
+                                                {% set descontado = precio * descuento %}
+                                                {% set total = precio - descontado %}
+                                                <p id="descuento">${{precio|round(2, 'floor')}}  </p> 
+                                                <p id="precio_descuento">  ${{total|round(2, 'floor')}}</p> 
+                                        {% else %}
+                                            <p> ${{precio|round(2, 'floor')}}</p> 
+                                        {% endif %}
+                                    </div>
+                                    <p class="card_notimg_text">{{text}}.</p>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="card {{size}}">
+                                <div class="card-img">
+                                    <img src="../static/images/catalogo/{{product.id}}.png" alt="" srcset="">
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-content_code"> <p>{{product.id}}</p> </div>
+                                    <div class="card-content_price">
+                                        {% set descuento = product.Descuento | float %}
+                                        {% set precio = product.Precio | float %}
+                                        {% if descuento > 0 %}           
+                                                {% set descontado = precio * descuento %}
+                                                {% set total = precio - descontado %}
+                                                <p id="descuento">${{precio|round(2, 'floor')}}  </p> 
+                                                <p id="precio_descuento">  ${{total|round(2, 'floor')}}</p> 
+                                        {% else %}
+                                            <p> ${{precio|round(2, 'floor')}}</p> 
+                                        {% endif %}
+                                    </div>
+                                    <p>{{text}}.</p>
+                                </div>
+                                {% set descuento = product.Descuento | float %}
+                                {% if descuento > 0 %}
+                                    <div class="card-descuento">%</div>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+                        
+                        {% endfor %}
+                    
+                </div>
+                <div class="sheet-grid_foot">
+                    <p>{{loop.index}}</p>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+    <div class="end-page">
+        <img src="../static/images/portada/portada_4-min.jpg" alt="">
+    </div>
+
+
+    
+</body>
+</html>
