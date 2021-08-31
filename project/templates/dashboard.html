@@ -5,36 +5,41 @@
 <link rel="stylesheet" href="../static/css/normalize.css">
 <link rel="stylesheet" href="../static/css/dashboard.css">
 
-<div class="banner"></div>
-
 <div class="gridcontainer">
-    <a href="#sidebar-btn" class="side-btn"><ion-icon name="menu-outline"></ion-icon></a>
-    <div class="gridcontainer-sidebar" id="sidebar-btn">
-        <div class="gridcontainer-sidebar_list">
-            <H3>Panel de Administracion</H3>
+    <div class="gridcontainer-head">
+        <div class="gridcontainer-head_list">
+            <p>Panel de Administracion</p>
+            <p>Catalogo PDF</p>
             <ul>
                 <li>
-                    <h3>Catalogo Pdf</h3>
-                    <a href="{{ url_for('main.catalogue_one') }}">Catalogo 1</a>
-                    <a href="{{ url_for('main.catalogue_two') }}">Catalogo 2</a>
-                    <a href="{{ url_for('main.catalogue_three') }}">Catalogo 3</a>
-                    <a href="" class="sidebar_list_close"><ion-icon name="close-outline"></ion-icon></a>
+                    <a href="{{ url_for('main.catalogo', page = 1)}}">Catalogo 1</a>
+                    <a href="{{ url_for('main.catalogo', page = 2) }}">Catalogo 2</a>
+                    <a href="{{ url_for('main.catalogo', page = 3) }}">Catalogo 3</a>
                 </li>
             </ul>
         </div>
     </div>
 
     <div class="gridcontainer-inputfiles">
-        
+        <!-- 
             <div class="gridcontainer-inputfiles_card input-one">
                 <p><strong>Reglas para actualizar catalogo</strong></p><br>
                 <p>
-                    º Archivos admitidos<br> 
-                    º png, xls<br>
-                    º png, xls<br>
+                - Para añadir una imagen al catalogo se debe colocar como nombre de la misma el <strong>CODIGO</strong> del producto, Ejm: <strong>ACC-01</strong>.png <br>
+                - Solo se admite imagenes tipo <strong>PNG</strong> para el catalogo
+                <br>
+                <br>
+                - Para la actualizar los precios respete el numero y orden de las columnas como muestra la siguiente imagen:
                 </p>
+                <br>
+                <img id="myImg" src="../static/images/reglas.jpg" alt="Reglas-actualizavion-catalogo" width="120" height="80">
             </div>
-
+            <div id="popUp" class="modal">
+                <span class="close">&times;</span>
+                <img class="modal-content" id="img01">
+                <div id="caption"></div>
+            </div>
+        -->
             <div class="gridcontainer-inputfiles_card input-two">
 
                 <form action="" method="POST" enctype="multipart/form-data">
@@ -60,80 +65,13 @@
             </div>
     </div>
 
-    <div class="gridcontainer-tables">
-
-        <div class="tables">
-            <h4>Productos Usy</h4>
-            <div class="tables-search">
-                <div class="col-8">
-                    <strong>Buscando: {{tag}}</strong>
-                </div>
-                <form action="" method="post" autocomplete="off"> 
-                    <div class="row">
-                        <input type="text" class="tables-search_input" name="tag" id="tag"  placeholder="Ingrese Codigo"/> 
-                        <input type="submit" value="Buscar" class="tables-search_btn" name="">
-                    </div>
-                </form> 
-            </div>
-            <table>
-                <tr>
-                    <th><input type="checkbox" onclick="checkAll(this)"></th>
-                    <th>Codigo</th>
-                    <th>Disponibilidad</th>
-                    <th>Precio</th>
-                    <th>Descuento</th>
-                    <th>Descripcion</th>
-                </tr>
-                {% for rows in productos_usy_table.items %}
-                <tr>
-                    <td><input type="checkbox" name=""></td>
-                    <td>{{rows.id}}</td>
-                    <td>{{rows.Disponibilidad}}</td>
-                    <td>{{rows.Precio}}</td>
-                    <td>{{rows.Descuento}}</td>
-                    <td>{{rows.Descripcion}}</td>
-                </tr>
-                {% endfor %}
-            </table>
-            <nav class="tables-nav">
-                {% if productos_usy_table.has_prev %}
-                    <li class="tables-nav_item"><a class="btn-link"  href="{{ url_for('main.dashboard', page=productos_usy_table.prev_num) }}">Anterior</a></li>
-                {% else %}
-                    <li class="tables-nav_item"><a class="btn-link btn-link_disable" href="">Anterior</a></li>
-                {% endif %}
-
-                {% for page in productos_usy_table.iter_pages(left_edge=3, right_edge=3) %}
-                    {% if page %}
-
-                        {% if page==productos_usy_table.page %}
-                        <li class="tables-nav_item active"><a class="btn-link" href="{{ url_for('main.dashboard', page=page) }}">{{ page }}</a></li>
-                        {% else %}
-                        <li class="tables-nav_item"><a class="btn-link" href="{{ url_for('main.dashboard', page=page) }}">{{ page }}</a></li>
-                        {% endif %}
-
-                    {% else %}
-                        <li class="tables-nav_item disabled" id="example_ellipsis"><a href="#" class="btn-link">…</a></li> 
-                    {% endif %}
-                {% endfor %}
-
-
-                {% if productos_usy_table.has_next %}
-                    <li class="tables-nav_item"><a class="btn-link"  href="{{ url_for('main.dashboard', page=productos_usy_table.next_num) }}">Siguiente</a></li>
-                {% else %}
-                    <li class="tables-nav_item"><a class="btn-link btn-link_disable"  href="">Siguiente</a></li>
-                {% endif %}
-            </nav>
-        </div>
-        
-
-
-    </div>
     <div class="gridcontainer-footer">
         <div class="gridcontainer-footer_info">
-            <p>&copy; SUMINISTRO ROLEO C.A . Derechos reservados.</p>
+            <p>&copy;Suministros Roleo C.A - Derechos reservados</p>
         </div>
     </div>
 </div>
+
 
 <script>
     function checkAll(bx) {
@@ -143,6 +81,24 @@
           cbs[i].checked = bx.checked;
         }
       }
+    }
+
+
+    var modal = document.getElementById('popUp');
+
+    var img = document.getElementById('myImg');
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    img.onclick = function(){
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText.innerHTML = this.alt;
+    }
+
+    var span = document.getElementsByClassName("close")[0];
+
+    span.onclick = function() { 
+      modal.style.display = "none";
     }
 </script>
 

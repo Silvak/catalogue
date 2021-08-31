@@ -10,7 +10,6 @@ db = SQLAlchemy()
 
 def create_app():    
     app = Flask(__name__)
-
     app.config['SECRET_KEY'] = os.urandom(24)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data/products.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

@@ -64,9 +64,8 @@ def import_data():
         if 2 == SHEET.index(n):
             df.rename(columns={'LISTA DE PRECIOS  DIJONAS':'id', 'Unnamed: 1':'REF',
             'Unnamed: 2':'Disponibilidad', 'Unnamed: 3':'Transito', 'Unnamed: 4':'Precio', 
-            'Unnamed: 5':'Descripcion', 'Unnamed: 6':'UM'}, inplace=True)
+            'Unnamed: 5':'Descripcion', 'Unnamed: 6':'UM', 'Unnamed: 7':'Descuento'}, inplace=True)
             df.to_sql('hoja3', con=engine, if_exists='replace', index=False)
-
     #hoja1 = engine.execute('SELECT * FROM hoja1 WHERE Disponibilidad > 0 OR Disponibilidad IS NULL').fetchall()
     return 
 
