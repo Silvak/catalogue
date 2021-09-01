@@ -14,7 +14,7 @@ from .files import file_management, allowed_file, import_data, img_management
 from werkzeug.utils import secure_filename
 from .models import get_data
 from datetime import datetime
-import cv2
+from cv2 import *
 
 
 main = Blueprint('main', __name__)
