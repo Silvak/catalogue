@@ -14,7 +14,7 @@ from .files import file_management, allowed_file, import_data, img_management
 from werkzeug.utils import secure_filename
 from .models import get_data
 from datetime import datetime
-from cv2 import *
+import cv2 as cv
 
 
 main = Blueprint('main', __name__)
@@ -71,7 +71,7 @@ def catalogo(page):
                 size = ""
                 try:
                     #tratamos de encontrar la imagen dentro de la carpeta del catalogo
-                    img = cv2.imread(f'./project/static/images/catalogo/{productos[arr_index].id}.png')
+                    img = cv.imread(f'./project/static/images/catalogo/{productos[arr_index].id}.png')
                     height, width, channels = img.shape
                     #print (f'h:{height} w:{width} c:{channels}  #########################  IMAGEN EXISTE')
                     size = size_images(height, width)
